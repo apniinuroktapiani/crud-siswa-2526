@@ -2,37 +2,51 @@
 <html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Form Tambah Siswa</title>
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Form Tambah Siswa</title>
+    
     <link rel="stylesheet" href="style.css">
 </head>
-    <a href="daftar.html">daftar.html</a>
+<a href="daftar.html">daftar.html</a>
+
 <body>
     <div class="container">
-      <h1>Form Tambah Siswa</h1>
-      
-      <form>
-      <label>NIS</label>
-      <input type="text" id="nis" />
-      
-      <label>Nama</label>
-      <input type="text" id="nama" />
-      
-      <label>Kelas</label>
-      <select name="kelas" id="kelas">
-          <option value="X">X</option>
-          <option value="IX">IX</option>
-          <option value="XII">XII</option>
-       </select>
-  
-        <button id="tombolsimpan">simpan</button>
-       </form>
-      
-      
-     </div>
+        <h1>Form Tambah Siswa</h1>
+        
+        <form id="formtambah">
+            <label>NIS</label>
+            <input type="text" id="nis" />
+            
+            <label>Nama</label>
+            <input type="text" id="nama" />
+            
+            <label>Kelas</label>
+            <select name="kelas" id="kelas">
+                <option value="X">X</option>
+                <option value="IX">IX</option>
+                <option value="XII">XII</option>
+            </select>
+            
+            <button id="tombolsimpan">simpan</button>
+        </form>
+        
+        
+    </div>
     
+    <script type="module">
+        import { tambahDataSiswa } from './main.js'
+        //mengirimkan data siswa dari from
+        const formTambah = document.getElementById("formtambah")
+        
+        //event ketika form di submit (dikirim)
+        formTambah.addEventListener('submit', function(e) {
+            //mencegah reload halaman
+            e.preventDefault()
+            //eksekusi fungsi tambah data siswa
+            tambahDataSiswa()
+        })
+    </script>
 </body>
 
 </html>

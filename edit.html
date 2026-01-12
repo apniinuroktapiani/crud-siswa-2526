@@ -4,11 +4,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>edit</title>
+  <title>Ubah Data Siswa</title>
+  
+      <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  
+      <div class="container">
+        <h1>Form Ubah Siswa</h1>
+        
+        <form id="formUbah">
+            <label>NIS</label>
+            <input type="text" id="nis" />
+            
+            <label>Nama</label>
+            <input type="text" id="nama" />
+            
+            <label>Kelas</label>
+            <select name="kelas" id="kelas">
+                <option value="X">X</option>
+                <option value="IX">XI</option>
+                <option value="XII">XII</option>
+            </select>
+            
+            <button id="tombolsimpan">simpan</button>
+            <a href="daftar.html">Daftar Siswa</a>
+        </form>
+    </div>
+    
+ <script type="module">
+     import { ambilDataSiswa, ubahDataSiswa } from './main.js'
+        
+        //mengambil id dari URL
+        const urlParams = new URLSearchParams(window.location.search)
+        const idSiswa = urlParams.get('id')
+        
+        //mengisi form dengan data siswa yang di ambil dari Firestore
+        const siswa = await ambilDataSiswa(idSiswa)
+        
+        document.getElementById('nis').value 
+             = siswa.nis
+        document.getElementById('nama').value = siswa.nama
+        
+        const formUbah = document.getElementById('formUbah')
+        formUbah.addEventListener('submit', function (e) {
+          //mencegah reloved halaman
+          e.preventDefault()
+          
+          const nis = document.getElementById('nis').value
+          const nama = document.getElementById('nama').value
+          const kelas = document.getElementById('kelas').value
+          
+        //eksekusi fungsi ubah data siswa
+        ubahDataSiswa(idSiswa, nis, nama, kelas)
+        })
+    
+            
+</script>
+        
+        
+        
 </body>
 
 </html>
